@@ -31,7 +31,6 @@ while True:
     letter_2 = player_list[1]
     player_1 = Player(player=letter_1)
     player_2 = Player(player=letter_2)
-    play_count = 0
 
     "Initialises the board"
     gameboard = Board()
