@@ -10,17 +10,16 @@ example.example()
 "Input board size"
 while True:
     try:
-        size_selection = int(input("Enter board size x as integer (min 3, max 15): "))
+        size_selection = ast.literal_eval(input("Enter board size x,y. x = Rows, y = Columns  (min x,y = 3): "))
+        while size_selection[0] < 3 or size_selection[1] < 3:
+            size_selection = int(input("Minimum board size is 3. Enter board size x,y as integer (min x,y = 3): "))
         break
-    except ValueError:
+    except (ValueError, SyntaxError, TypeError):
         print("Not valid. ", end="")
         continue
 
-while size_selection < 3:
-    size_selection = int(input("Minimum board size is 3. Enter board size x as integer (min 3, max 15): "))
-
-while size_selection > 15:
-    size_selection = int(input("Maximum board size is 15. Enter board size x as integer (min 3, max 15): "))
+selection_x = size_selection[0]
+selection_y = size_selection[1]
 
 "Starts the game"
 while True:
@@ -56,8 +55,8 @@ while True:
                 while check_error == 1:
                     try:
                         cell_1 = ast.literal_eval(input(f"Player {letter_1}, enter first cell 'x1, y1': "))
-                        while cell_1[0] > (size_selection - 1) or cell_1[1] > (size_selection - 1) or cell_1[0] < 0 or cell_1[1] < 0:
-                            cell_1 = ast.literal_eval(input(f"Coordinate has to be in range between 0 and {size_selection - 1}. Enter again 'x1, y1': "))
+                        while cell_1[0] > (selection_x - 1) or cell_1[1] > (selection_y - 1) or cell_1[0] < 0 or cell_1[1] < 0:
+                            cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 2
                         break
                     except (ValueError, SyntaxError, TypeError):
@@ -67,8 +66,8 @@ while True:
                 while check_error == 2:
                     try:
                         cell_2 = ast.literal_eval(input(f"Player {letter_1}, enter second cell 'x1, y1': "))
-                        while cell_2[0] > (size_selection - 1) or cell_2[1] > (size_selection - 1) or cell_2[0] < 0 or cell_2[1] < 0:
-                            cell_2 = ast.literal_eval(input(f"Coordinate has to be in range between 0 and {size_selection - 1}. Enter again 'x1, y1': "))
+                        while cell_2[0] > (selection_x - 1) or cell_2[1] > (selection_y - 1) or cell_2[0] < 0 or cell_2[1] < 0:
+                            cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 0
                         break
                     except (ValueError, SyntaxError, TypeError):
@@ -100,8 +99,8 @@ while True:
                 while check_error == 1:
                     try:
                         cell_1 = ast.literal_eval(input(f"Player {letter_2}, enter first cell 'x1, y1': "))
-                        while cell_1[0] > (size_selection - 1) or cell_1[1] > (size_selection - 1) or cell_1[0] < 0 or cell_1[1] < 0:
-                            cell_1 = ast.literal_eval(input(f"Coordinate has to be in range between 0 and {size_selection - 1}. Enter again 'x1, y1': "))
+                        while cell_1[0] > (selection_x - 1) or cell_1[1] > (selection_y - 1) or cell_1[0] < 0 or cell_1[1] < 0:
+                            cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 2
                         break
                     except (ValueError, SyntaxError, TypeError):
@@ -111,8 +110,8 @@ while True:
                 while check_error == 2:
                     try:
                         cell_2 = ast.literal_eval(input(f"Player {letter_2}, enter second cell 'x1, y1': "))
-                        while cell_2[0] > (size_selection - 1) or cell_2[1] > (size_selection - 1) or cell_2[0] < 0 or cell_2[1] < 0:
-                            cell_2 = ast.literal_eval(input(f"Coordinate has to be in range between 0 and {size_selection - 1}. Enter again 'x1, y1': "))
+                        while cell_2[0] > (selection_x - 1) or cell_2[1] > (selection_y - 1) or cell_2[0] < 0 or cell_2[1] < 0:
+                            cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 0
                         break
                     except (ValueError, SyntaxError, TypeError):

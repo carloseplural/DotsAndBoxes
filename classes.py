@@ -17,30 +17,31 @@ class Board:
 
     "Creates the board based on a given input size"
     def create_board(self, size_selection):
-        self.size_selection = int(size_selection)
-        selection = self.size_selection
+        self.size_selection = size_selection
+        selection_x = self.size_selection[0]
+        selection_y = self.size_selection[1]
 
         "Populates the board"
         board = self.board
 
-        for r in range(selection):
-            board.append(['+', ' '] * (selection - 1) + ['+'])
-            board.append([' '] * 7)
+        for r in range(selection_x):
+            board.append(['+', ' '] * (selection_y - 1) + ['+'])
+            board.append([' '] * ((selection_y * 2) - 1))
 
         "Creates column index"
         columns = self.columns
-        for col in range(selection):
+        for col in range(selection_y):
             columns.append(col)
-            if col < (selection - 1) and col < 10:
+            if col < (selection_y - 1) and col < 10:
                 columns.append(' ')
-            elif (selection - 1) > col >= 10:
+            elif (selection_y - 1) > col >= 10:
                 columns.append('')
 
         "Creates row index"
         rows = self.rows
-        for row in range(selection):
+        for row in range(selection_x):
             rows.append(row)
-            if row < (selection - 1):
+            if row < (selection_x - 1):
                 rows.append(' ')
 
     "Displays the board"
@@ -70,7 +71,7 @@ class Board:
     "Displays example on a 4x4 board"
     def example(self):
         print("\nChoose two cardinal points to make a move (x1, y1) (x2, y2)", "Example: (0,1) (0,2)", sep="\n")
-        self.create_board(size_selection=4)
+        self.create_board(size_selection=(4,4))
         example = self.board.copy()
         print("-" * 16)
         example[0][2] = "o"
@@ -243,9 +244,11 @@ class Board:
     "Game ends when the board is full"
     def board_is_full(self):
         play_count = self.play_count
+        selection_x = self.size_selection[0]
+        selection_y = self.size_selection[1]
 
-        "If x is the board size, the board will be full after 2(x^2 - x) plays"
-        if play_count == (((self.size_selection - 1) * self.size_selection) * 2):
+        "If x,y is the board size, the board will be full after (2xy - x - y) plays"
+        if play_count == (2 * (selection_x * selection_y) - selection_x - selection_y):
             return True
         else:
             return False
