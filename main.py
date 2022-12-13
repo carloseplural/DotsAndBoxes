@@ -1,12 +1,12 @@
 # Importing classes from the classes.py file
-from classes import Board, Human, Computer
+from classes import Board, Human, Smart_Computer, Random_Computer
 import ast
 import random
 
 "Game mode"
-print("Select game mode: ", "0 - PLayer vs Player", "1 - Player vs PC (turns)", "2 - Player vs PC (synchronous)", sep="\n")
+print("Select game mode: ", "0 - PLayer vs Player", "1 - Player vs PC (easy)", "2 - Player vs PC (less easy)", "3 - Player vs PC (synchronous)", sep="\n")
 mode = input("Enter number: ")
-while mode not in ['0', '1', '2']:
+while mode not in ['0', '1', '2', '3']:
     mode = input("Not valid. Enter number: ")
 
 "Input board size"
@@ -88,7 +88,6 @@ while mode == "0":
 
             "Logs move"
             player_1.move_player(cell_1=cell_1, cell_2=cell_2)
-            Computer(letter_1, gameboard=gameboard).move_computer()
 
             "Adds one play to the total"
             gameboard.count_play()
@@ -143,7 +142,6 @@ while mode == "0":
 
             "Logs move"
             player_2.move_player(cell_1=cell_1, cell_2=cell_2)
-            Computer(letter_2, gameboard=gameboard).move_computer()
 
             "Adds one play to the total"
             gameboard.count_play()
@@ -178,7 +176,7 @@ while mode == "0":
         break
 
 "Player vs PC (turns) mode"
-while mode == "1":
+while mode == "1" or mode == "2":
 
     "Initialises the board"
     gameboard = Board()
@@ -186,7 +184,11 @@ while mode == "1":
 
     "Creates player instances"
     player = Human(gameboard=gameboard, player="A")
-    computer = Computer(gameboard=gameboard, player="B")
+    if mode == "1":
+        computer = Random_Computer(gameboard=gameboard, player="B")
+    if mode == "2":
+        computer = Smart_Computer(gameboard=gameboard, player="B")
+
     player_list = [player, computer]
     random.shuffle(player_list)
     player_1 = player_list[0]

@@ -365,7 +365,8 @@ class Player:
         self.board_x = (len(self.gameboard.board) + 1) // 2
         self.board_y = (len(self.gameboard.board[0]) + 1) // 2
 
-    "Player vs computer"
+
+"Player Class"
 class Human(Player):
 
     "Moves the selected player"
@@ -394,18 +395,26 @@ class Human(Player):
         if cell_1_point_2 == cell_2_point_2:
             board[max(cell_1_point_1, cell_2_point_1) - 1][cell_1_point_2] = self.v_line
 
+"Computer Class"
 class Computer(Player):
 
-    "Moves the selected player"
+    "Initialises methods"
+    def __init__(self, player, gameboard):
+        super().__init__(player, gameboard)
+        self.fill_box = None
+
+
+"Class random computer"
+class Random_Computer(Computer):
+
+    "Computer selects and makes the move"
     def move_computer(self):
-        possible_moves = []
-        allowed_moves = []
-        best_moves = []
         board_class = self.gameboard
         board = self.gameboard.board
         board_x = self.board_x
         board_y = self.board_y
-        self.fill_box = None
+        possible_moves = []
+        allowed_moves = []
 
         "Creates list of all possible moves in the board"
         for x in range(board_x):
@@ -416,8 +425,70 @@ class Computer(Player):
         for p1 in possible_moves:
             for p2 in possible_moves:
                 if (board_class.cells_are_empty(cell_1=p1, cell_2=p2) and
-                    board_class.cells_are_adjacent(cell_1=p1, cell_2=p2) and
-                    p1 != p2
+                        board_class.cells_are_adjacent(cell_1=p1, cell_2=p2) and
+                        p1 != p2
+                ):
+                    if (p2, p1) not in allowed_moves:
+                        allowed_moves.append((p1, p2))
+                    pass
+                pass
+
+        random_play = random.choice(allowed_moves)
+        cell_1 = random_play[0]
+        cell_2 = random_play[1]
+
+        "Formats cell 1"
+        cell_1_point_1 = cell_1[0] * 2
+        cell_1_point_2 = cell_1[1] * 2
+
+        "Formats cell 2"
+        cell_2_point_1 = cell_2[0] * 2
+        cell_2_point_2 = cell_2[1] * 2
+
+        "logs the move"
+        board[cell_1_point_1][cell_1_point_2] = self.play
+        board[cell_2_point_1][cell_2_point_2] = self.play
+
+        "draws line between cells"
+        "if cells are horizontally adjacent draw an horizontal line"
+        if cell_1_point_1 == cell_2_point_1:
+            board[cell_1_point_1][(max(cell_1_point_2, cell_2_point_2) - 1)] = self.h_line
+
+        "if cells are vertically adjacent draw a vertical line"
+        if cell_1_point_2 == cell_2_point_2:
+            board[max(cell_1_point_1, cell_2_point_1) - 1][cell_1_point_2] = self.v_line
+
+        "Check if move draws a box"
+        if board_class.check_box(cell_1=cell_1, cell_2=cell_2):
+            board_class.fill_box(player="B", cell_1=cell_1, cell_2=cell_2)
+            self.fill_box = True
+        else:
+            self.fill_box = False
+
+"Class smart computer"
+class Smart_Computer(Computer):
+
+    "Computer selects and makes the move"
+    def move_computer(self):
+        board_class = self.gameboard
+        board = self.gameboard.board
+        board_x = self.board_x
+        board_y = self.board_y
+        possible_moves = []
+        allowed_moves = []
+        best_moves = []
+
+        "Creates list of all possible moves in the board"
+        for x in range(board_x):
+            for y in range(board_y):
+                possible_moves.append((x, y))
+
+        "Creates list of all allowed moves left in the board"
+        for p1 in possible_moves:
+            for p2 in possible_moves:
+                if (board_class.cells_are_empty(cell_1=p1, cell_2=p2) and
+                        board_class.cells_are_adjacent(cell_1=p1, cell_2=p2) and
+                        p1 != p2
                 ):
                     if (p2, p1) not in allowed_moves:
                         allowed_moves.append((p1, p2))
@@ -473,6 +544,7 @@ class Computer(Player):
             self.fill_box = True
         else:
             self.fill_box = False
+
 
 #
 #
