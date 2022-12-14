@@ -4,7 +4,7 @@ import ast
 import random
 
 "Game mode"
-print("Select game mode: ", "0 - PLayer vs Player", "1 - Player vs PC (easy)", "2 - Player vs PC (less easy)", "3 - Player vs PC (synchronous)", sep="\n")
+print("Select game mode: ", "1 - PLayer vs Player", "2 - Player vs PC (easy)", "3 - Player vs PC (less easy)", "4 - Player vs PC (synchronous)", sep="\n")
 mode = input("Enter number: ")
 while mode not in ['1', '2', '3', '4']:
     mode = input("Not valid. Enter number: ")
@@ -184,9 +184,9 @@ while mode == "2" or mode == "3":
 
     "Creates player instances"
     player = Human(gameboard=gameboard, player="A")
-    if mode == "1":
-        computer = Random_Computer(gameboard=gameboard, player="B")
     if mode == "2":
+        computer = Random_Computer(gameboard=gameboard, player="B")
+    if mode == "3":
         computer = Smart_Computer(gameboard=gameboard, player="B")
 
     player_list = [player, computer]
@@ -355,3 +355,61 @@ while mode == "2" or mode == "3":
         continue
     else:
         break
+
+while mode == "4":
+
+    "Initialises the board"
+    gameboard = Board()
+    gameboard.create_board(size_selection=size_selection)
+
+    "Creates player instances"
+    player = Human(gameboard=gameboard, player="A")
+    computer = Smart_Computer(gameboard=gameboard, player="B")
+
+    "Displays the board"
+    gameboard.display_board()
+    gameboard.get_score()
+    print("Players play simultaneously!")
+
+    "Run the game"
+    while True:
+
+        "Player 1 moves"
+        while gameboard.board_is_full() == False:
+
+            "Enter cells and checks for errors"
+            check_error = 1
+            while True:
+                while check_error == 1:
+                    try:
+                        cell_1 = ast.literal_eval(input(f"Enter first cell 'x1, y1': "))
+                        while cell_1[0] > (selection_x - 1) or cell_1[1] > (selection_y - 1) or cell_1[0] < 0 or cell_1[1] < 0:
+                            cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
+                        check_error = 2
+                        break
+                    except (ValueError, SyntaxError, TypeError, IndexError):
+                        print("Not valid. ", end="")
+                        continue
+
+                while check_error == 2:
+                    try:
+                        cell_2 = ast.literal_eval(input(f"Enter second cell 'x1, y1': "))
+                        while cell_2[0] > (selection_x - 1) or cell_2[1] > (selection_y - 1) or cell_2[0] < 0 or cell_2[1] < 0:
+                            cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
+                        check_error = 0
+                        break
+                    except (ValueError, SyntaxError, TypeError, IndexError):
+                        print("Not valid. ", end="")
+                        continue
+
+                "Checks the rules"
+                if not gameboard.check_rules(cell_1=cell_1, cell_2=cell_2):
+                    check_error = 1
+                else:
+                    break
+
+            "Logs move"
+            player.move_player(cell_1=cell_1, cell_2=cell_2)
+
+            "Adds one play to the total"
+            gameboard.count_play()
