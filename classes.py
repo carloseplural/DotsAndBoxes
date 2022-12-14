@@ -355,7 +355,6 @@ class Player:
         self.play = "o"
         self.h_line = "—"
         self.v_line = "|"
-        self.score = 0
         self.line_played = None
 
         "Links board"
