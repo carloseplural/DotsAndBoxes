@@ -6,7 +6,7 @@ import random
 "Game mode"
 print("Select game mode: ", "0 - PLayer vs Player", "1 - Player vs PC (easy)", "2 - Player vs PC (less easy)", "3 - Player vs PC (synchronous)", sep="\n")
 mode = input("Enter number: ")
-while mode not in ['0', '1', '2', '3']:
+while mode not in ['1', '2', '3', '4']:
     mode = input("Not valid. Enter number: ")
 
 "Input board size"
@@ -28,7 +28,7 @@ example = Board()
 example.example()
 
 "Starts a player vs player game"
-while mode == "0":
+while mode == "1":
 
     "Initialises the board"
     gameboard = Board()
@@ -65,7 +65,7 @@ while mode == "0":
                             cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 2
                         break
-                    except (ValueError, SyntaxError, TypeError):
+                    except (ValueError, SyntaxError, TypeError, IndexError):
                         print("Not valid. ", end="")
                         continue
 
@@ -76,7 +76,7 @@ while mode == "0":
                             cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 0
                         break
-                    except (ValueError, SyntaxError, TypeError):
+                    except (ValueError, SyntaxError, TypeError, IndexError):
                         print("Not valid. ", end="")
                         continue
 
@@ -119,7 +119,7 @@ while mode == "0":
                             cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 2
                         break
-                    except (ValueError, SyntaxError, TypeError):
+                    except (ValueError, SyntaxError, TypeError, IndexError):
                         print("Not valid. ", end="")
                         continue
 
@@ -130,7 +130,7 @@ while mode == "0":
                             cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                         check_error = 0
                         break
-                    except (ValueError, SyntaxError, TypeError):
+                    except (ValueError, SyntaxError, TypeError, IndexError):
                         print("Not valid. ", end="")
                         continue
 
@@ -176,7 +176,7 @@ while mode == "0":
         break
 
 "Player vs PC (turns) mode"
-while mode == "1" or mode == "2":
+while mode == "2" or mode == "3":
 
     "Initialises the board"
     gameboard = Board()
@@ -222,7 +222,7 @@ while mode == "1" or mode == "2":
                                 cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                             check_error = 2
                             break
-                        except (ValueError, SyntaxError, TypeError):
+                        except (ValueError, SyntaxError, TypeError, IndexError):
                             print("Not valid. ", end="")
                             continue
 
@@ -233,7 +233,7 @@ while mode == "1" or mode == "2":
                                 cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                             check_error = 0
                             break
-                        except (ValueError, SyntaxError, TypeError):
+                        except (ValueError, SyntaxError, TypeError, IndexError):
                             print("Not valid. ", end="")
                             continue
 
@@ -290,7 +290,7 @@ while mode == "1" or mode == "2":
                                 cell_1 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                             check_error = 2
                             break
-                        except (ValueError, SyntaxError, TypeError):
+                        except (ValueError, SyntaxError, TypeError, IndexError):
                             print("Not valid. ", end="")
                             continue
 
@@ -301,7 +301,7 @@ while mode == "1" or mode == "2":
                                 cell_2 = ast.literal_eval(input(f"Coordinate not in range. Enter again 'x1, y1': "))
                             check_error = 0
                             break
-                        except (ValueError, SyntaxError, TypeError):
+                        except (ValueError, SyntaxError, TypeError, IndexError):
                             print("Not valid. ", end="")
                             continue
 
