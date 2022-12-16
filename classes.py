@@ -545,16 +545,5 @@ class Smart_Computer(Computer):
             self.fill_box = False
 
 
-#
-#
-#
-#
-#
-# zoard = Board()
-# zoard.create_board(size_selection=(4,4))
-# zoard.check_box(cell_1=(0,0), cell_2=(0,1))
-# print(zoard.condition_count)
-# Computer("A",zoard).move_computer()
-#
 
 
