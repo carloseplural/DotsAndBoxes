@@ -627,7 +627,7 @@ class Random_Computer(Computer):
 class Smart_Computer(Computer):
 
     "Computer selects and makes the move"
-    def move_computer(self, mode):
+    def move_computer(self):
         board_class = self.gameboard
         board = self.gameboard.board
         board_x = self.board_x

@@ -356,6 +356,7 @@ while mode == "2" or mode == "3":
     else:
         break
 
+"Player vs PC (Synchronous)"
 while mode == "4":
 
     "Initialises the board"
@@ -407,6 +408,7 @@ while mode == "4":
 
         "Checks if the board is full"
         if gameboard.board_is_full():
+
             "If yes display the winner or tie"
             gameboard.get_winner()
             break
