@@ -22,7 +22,8 @@ There are 3 simple rules to this game:
 3. A line cannot be drawn if it was already drawn before.
 
 The game will end when there are no more lines left to draw.
-The player with most points wins. In case the points are the same, the game results in a tie.
+The player with most points wins. 
+In case the points are the same, the game results in a tie.
 
 ## Files
 There are two files necessary to run the game:
