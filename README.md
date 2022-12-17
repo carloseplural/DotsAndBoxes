@@ -1,7 +1,7 @@
 # SPDA Coursework Part I - Dots and Boxes
 
 ## Summary
-This game was made on Python using Object Oriented Programming and using only modules present in the Python Standard Library.
+This game was made on Python using Object Oriented Programming and only using modules present in the Python Standard Library.
 There are two files, main.py where the game is run and which contains the inputs, menus and selections, and classes.py which defines the board, rules, player interactions etc.
 
 ## Dots and Boxes
