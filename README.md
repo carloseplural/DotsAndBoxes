@@ -1,5 +1,25 @@
-# SPDA Coursework Part I - Dots-and-boxes
-Carlos Ferreira
+# SPDA Coursework Part I - Dots and Boxes
+
+## Summary
+This game was made on Python using Object Oriented Programming and using only modules present in the Python Standard Library.
+There are two files, main.py where the game is run and which contains the inputs, menus and selections, and classes.py which defines the board, rules, player interactions etc.
+
+## Dots and Boxes
+
+> Dots and Boxes is a pencil-and-paper game for two players (sometimes more). It was first published in the 19th century by French mathematician Édouard Lucas, who called it la pipopipette. It has gone by many other names, including the dots and dashes, game of dots, dot to dot grid, boxes, and pigs in a pen
+
+> The game starts with an empty grid of dots. Usually two players take turns adding a single horizontal or vertical line between two unjoined adjacent dots. A player who completes the fourth side of a 1×1 box earns one point and takes another turn. A point is typically recorded by placing a mark that identifies the player in the box, such as an initial. The game ends when no more lines can be placed. The winner is the player with the most points. The board may be of any size grid.
+> -- <cite>[wikipedia][1]</cite>
+
+[1]: https://en.wikipedia.org/wiki/Dots_and_Boxes
+
+## Rules
+
+There are 3 simple rules to this game:
+
+1. Two different points must be chosen to draw a line.
+2. A line can only be drawn between two vertically or horizontally adjacent points.
+3. A line cannot be drawn if it was already drawn before.
 
 ## Files
 There are two files necessary to run the game:
@@ -13,14 +33,6 @@ classes.py
 random
 ast
 ```
-
-## Dots-and-boxes
-
-> Dots and Boxes is a pencil-and-paper game for two players (sometimes more). It was first published in the 19th century by French mathematician Édouard Lucas, who called it la pipopipette. It has gone by many other names, including the dots and dashes, game of dots, dot to dot grid, boxes, and pigs in a pen
-
-> The game starts with an empty grid of dots. Usually two players take turns adding a single horizontal or vertical line between two unjoined adjacent dots. A player who completes the fourth side of a 1×1 box earns one point and takes another turn. A point is typically recorded by placing a mark that identifies the player in the box, such as an initial. The game ends when no more lines can be placed. The winner is the player with the most points. The board may be of any size grid.
-
-[1]: https://en.wikipedia.org/wiki/Dots_and_Boxes
 
 ## Run the game
 1. **Run the main.py file**
