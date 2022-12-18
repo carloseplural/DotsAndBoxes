@@ -1,8 +1,58 @@
 # SPDA Coursework Part I - Dots and Boxes
 
-## Summary
-This game was made on Python using Object Oriented Programming and only using modules present in the Python Standard Library.
+## Overview
+
+This project was made on Python using Object Oriented Programming and only using modules present in the Python Standard Library.
 There are two files, main.py where the game is run and which contains the cell inputs, menus and selections, and classes.py which defines the board, rules, player interactions etc.
+
+## The code
+
+There are two files in this project:
+
+```
+main.py
+classes.py
+```
+
+and two modules from the Python Standard Library were used:
+
+```
+ast
+random
+```
+
+### main.py
+
+This file contains the main structure of the game. Loops for each game mode and turns, most of error handling and inputs.
+
+
+The program starts with a menu and a prompt to select the game mode, in this menu the user can select *Player vs Player* (two human players), *Player vs PC (easy)* ("random" computer), *Player vs PC (less easy)* ("smart" computer) and *Player vs PC (synchronous)*. It will then ask to enter a board size x by y in tuple form (min x, y = 3), e.g 4,5. After the parameters for the game are chosen the first player will be chosen at random (except for synchronous mode).
+
+Once these options are chosen the first thing to appear is an example that shows how to draw a line. It can be confusing to remember rows and columns so that reference will always be there at the top of the terminal :). Directly below the example the gameboard and scoreboard will be displayed.  
+
+Depending on the mode selected, one of four loops will then start. They are very similar in structure and run in the following order:
+
+  1. Outer loop for the reset option.
+      - Restarts/breaks depending on the user input "Y"/"N".
+      - After each reset the first player will be chosen at random.
+  2. First inner loop for maximum number of lines drawn.
+      - Itself contains two loops, one for each player.
+      - Broken when the board is full
+  3. Second inner loop for each turn.
+      - First it handles errors for each cell (value, syntax, type, index).
+      - And then looks at both cells in conjunction to check them against the rules.
+  4. Once Rules are checked, saves each inputed cell and goes back to the first inner loop.
+  5. Draws a line and checks if the cell fills a box (in case the current player is human).
+      - If the player is the computer, the move is already validated in the function.
+      - If a box is filled, sets the turn counter to repeat the current turn (giving the player a free turn)
+  6. Displays a new updated board and increases play count by one.
+      - Given a board syze (x,y) the maximum number of plays for each game is max = [2 * (x * y) - x - y].
+  7. Checks if the board is full and in case it isn't it goes to the next turn.
+  8. This will repeat until the board is full
+  9. The winner (or tie) will be displayed.
+  10. The reset prompt will appear, in which the player can choose "Y" or "N".
+
+
 
 ## Dots and Boxes
 
@@ -26,19 +76,6 @@ The game will end when there are no more lines left to draw.
 The player with most points wins. 
 
 In case the points are the same, the game results in a tie.
-
-## Files
-There are two files necessary to run the game:
-```bash
-main.py
-classes.py
-```
-
-## Modules
-```bash
-random
-ast
-```
 
 ## Run the game
 1. **Run the main.py file**
@@ -113,6 +150,7 @@ ast
       - Selecting "Y" will restart the game with the same board size and in the same mode.
   - To stop running the game select "N".
 
+# Code Description
 
 
 
